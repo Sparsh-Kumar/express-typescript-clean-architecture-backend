@@ -4,7 +4,11 @@
   "description": "a todo api depicting the use of InversifyJS to build 3 layered clean architecture.",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "NODE_ENV=production NODE_CONFIG_ENV=testing mocha --exit -r ts-node/register --project tsconfig.json test/**/*.spec.ts",
+    "lint": "eslint .",
+    "lint:md": "remark .",
+    "lint:fix": "eslint --fix .",
+    "start": "node dist/server.js"
   },
   "author": "sparshkumar",
   "license": "ISC",
