@@ -1,9 +1,15 @@
 # system files
 .DS_Store
 
+# environment files
+.env
+
 # editor files
 .idea/
 .vscode/
+
+# env files
+.env
 
 # logs
 logs
