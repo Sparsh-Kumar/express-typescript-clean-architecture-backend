@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import {
   controller,
   httpGet,
+  httpPost,
 } from 'inversify-express-utils';
 import TodoService from './todo.service';
 import { LooseObject } from './types';
@@ -22,5 +23,19 @@ export default class TodoController {
         todos,
       },
     });
+  }
+
+  @httpPost('/')
+  async createNewTask(
+    _req: Request,
+    _res: Response,
+  ): Promise <LooseObject> {
+    const todo = await this._todoService.create(_req.body);
+    return _res.status(200).send({
+      status: 'success',
+      data: {
+        todo
+      }
+    })
   }
 }

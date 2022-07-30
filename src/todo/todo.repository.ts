@@ -11,4 +11,9 @@ export default class TodoRepository {
   ): Promise <LooseObject> {
     return this._dbContext.todo.find(filter);
   }
+  async create(
+    todoBody: LooseObject
+  ): Promise <LooseObject> {
+    return this._dbContext.todo.create(todoBody);
+  }
 }

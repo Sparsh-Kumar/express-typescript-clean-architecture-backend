@@ -9,4 +9,7 @@ export default class TodoService {
   async getAll(filter: LooseObject): Promise<LooseObject> {
     return this._todoRepo.findAll(filter);
   }
+  async create(todoBody: LooseObject): Promise<LooseObject> {
+    return this._todoRepo.create(todoBody);
+  }
 }

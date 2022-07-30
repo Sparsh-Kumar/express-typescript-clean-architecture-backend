@@ -1,16 +1,23 @@
 import express from 'express';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import DbService from './database/db.service';
-import container from './dicontainer/container';
 import Application from './helpers/abstract-application';
+import TodoRepository from './todo/todo.repository';
+import TodoService from './todo/todo.service';
 
 export default class App extends Application {
   private _db: DbService;
 
-  async setup(): Promise<void> {
-    this._db = container.get(DbService);
+  configureService(): void {
+    this._container.bind(DbService).toSelf();
+    this._container.bind(TodoService).toSelf();
+    this._container.bind(TodoRepository).toSelf();
+  }
+
+  async setup(): Promise<void>  {
+    this._db = this._container.get(DbService);
     await this._db.connect();
-    const server: InversifyExpressServer = new InversifyExpressServer(container);
+    const server: InversifyExpressServer = new InversifyExpressServer(this._container);
     server.setConfig((app) => {
       app.use(express.json());
     });
