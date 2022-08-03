@@ -4,10 +4,11 @@ import App from './app';
 
 import './todo/todo.controller';
 
-export default function bootstrap(): Promise<void> {
-  return new App().setup();
+export default function bootstrap(): void {
+  /* eslint-disable no-new */
+  new App({
+    defaultScope: 'Singleton',
+  });
 }
 
-bootstrap().then(() => {}).catch((e) => {
-  console.log(e);
-});
+bootstrap();

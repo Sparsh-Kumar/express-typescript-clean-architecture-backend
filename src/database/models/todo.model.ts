@@ -12,7 +12,7 @@ const TodoModel: mongoose.Schema = new mongoose.Schema({
     required: true,
     trim: true,
     default: '',
-    maxLength: 15,
+    maxLength: 55,
   },
   status: {
     type: String,

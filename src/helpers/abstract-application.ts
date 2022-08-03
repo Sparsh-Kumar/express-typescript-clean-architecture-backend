@@ -1,3 +1,13 @@
+import { Container, interfaces } from 'inversify';
+
 export default abstract class Application {
-  abstract setup(): Promise<void> | void;
+  protected readonly _container: Container;
+
+  constructor(options: interfaces.ContainerOptions) {
+    this._container = new Container(options);
+    this.configureService();
+    this.setup();
+  }
+  abstract configureService(): void;
+  abstract setup(): void;
 }
