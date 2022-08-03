@@ -14,7 +14,7 @@ export default class App extends Application {
     this._container.bind(TodoRepository).toSelf();
   }
 
-  async setup(): Promise<void>  {
+  async setup(): Promise<void> {
     this._db = this._container.get(DbService);
     await this._db.connect();
     const server: InversifyExpressServer = new InversifyExpressServer(this._container);
