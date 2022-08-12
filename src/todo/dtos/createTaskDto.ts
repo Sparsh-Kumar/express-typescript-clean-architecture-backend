@@ -16,7 +16,7 @@ export default class CreateTaskDto {
 
   static from(taskBody: Partial<Todo>): CreateTaskDto | never {
     if (!taskBody.account) {
-      throw new Error('Missing property account.');
+      throw new ValidationException('Missing property account.');
     }
 
     if (!taskBody.description) {
