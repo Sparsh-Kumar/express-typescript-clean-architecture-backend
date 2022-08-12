@@ -1,5 +1,5 @@
 import { Todo } from 'src/database/types';
-import { TodoStatus } from '../types';
+import TodoStatus from '../types';
 
 export default class TaskDto {
   public readonly id: string;

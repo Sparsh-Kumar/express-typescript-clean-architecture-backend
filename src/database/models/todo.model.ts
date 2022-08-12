@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { TodoStatus } from '../../todo/types';
+import TodoStatus from '../../todo/types';
 
 const TodoModel: mongoose.Schema = new mongoose.Schema({
   account: {

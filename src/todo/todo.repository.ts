@@ -1,8 +1,9 @@
 import { injectable } from 'inversify';
 import { Todo } from 'src/database/types';
+import { LooseObject } from 'src/common/interfaces/loose-object';
 import DbService from '../database/db.service';
 import CreateTaskDto from './dtos/createTaskDto';
-import { LooseObject, TodoStatus } from './types';
+import TodoStatus from './types';
 
 @injectable()
 export default class TodoRepository {
