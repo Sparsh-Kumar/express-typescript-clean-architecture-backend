@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { Container } from 'inversify';
 import { ApplicationOptions } from './types';
 

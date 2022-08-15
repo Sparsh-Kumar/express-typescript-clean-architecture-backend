@@ -6,6 +6,7 @@
   "scripts": {
     "devstart": "ts-node-dev --respawn --transpile-only --no-notify -r tsconfig-paths/register src/bootstrap.ts",
     "test": "NODE_ENV=production NODE_CONFIG_ENV=testing mocha --exit -r ts-node/register --project tsconfig.json test/**/*.spec.ts",
+    "pre-commit": "npm run lint:fix && npm run lint",
     "lint": "eslint .",
     "lint:md": "remark .",
     "lint:fix": "eslint --fix .",
@@ -15,7 +16,7 @@
   "license": "ISC",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run pre-commit"
     }
   },
   "devDependencies": {

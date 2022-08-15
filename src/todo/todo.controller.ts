@@ -30,7 +30,7 @@ export default class TodoController {
     _req: Request,
     _res: Response,
   ): Promise <LooseObject> {
-    const data: TaskDto = await this._todoService.create(_req.body);
+    const data: TaskDto = await this._todoService.create(_req.body as CreateTaskDto);
     const response: BaseHttpResponse = BaseHttpResponse.success(data, 201);
     return _res.status(response.statusCode).send(response);
   }

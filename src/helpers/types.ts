@@ -18,3 +18,7 @@ export type ApplicationOptions = {
   containerOptions: interfaces.ContainerOptions;
   morganConfig: MorganConfig;
 };
+
+export type DtoClass = {
+  from: (requestBody: LooseObject) => LooseObject
+};
