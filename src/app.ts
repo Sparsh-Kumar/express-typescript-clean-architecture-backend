@@ -48,7 +48,7 @@ export default class App extends Application {
           );
           return _res.status(response.statusCode).json(response);
         }
-        _next();
+        return _next();
       });
     });
     const app = server.build();
