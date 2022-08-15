@@ -4,11 +4,12 @@ import {
   httpGet,
   httpPost,
 } from 'inversify-express-utils';
-import { Todo } from 'src/database/types';
+import ValidateRequestMiddleware from 'src/middlewares/validate-request-body-middleware';
+import { LooseObject } from 'src/common/interfaces/loose-object';
+import BaseHttpResponse from 'src/helpers/base-http-response';
 import CreateTaskDto from './dtos/createTaskDto';
 import TaskDto from './dtos/taskDto';
 import TodoService from './todo.service';
-import { LooseObject } from './types';
 
 @controller('/todos')
 export default class TodoController {
@@ -19,25 +20,18 @@ export default class TodoController {
     _req: Request,
     _res: Response,
   ): Promise<LooseObject> {
-    const todos: Todo[] = await this._todoService.getAll({});
-    const data: TaskDto[] = todos.map((todo: Todo): TaskDto => TaskDto.from(todo));
-    return _res.status(200).send({
-      status: 'success',
-      data,
-    });
+    const data: TaskDto[] = await this._todoService.getAll({});
+    const response: BaseHttpResponse = BaseHttpResponse.success(data, 200);
+    return _res.status(response.statusCode).send(response);
   }
 
-  @httpPost('/')
+  @httpPost('/', ValidateRequestMiddleware.with(CreateTaskDto))
   async createNewTask(
     _req: Request,
     _res: Response,
   ): Promise <LooseObject> {
-    const request: CreateTaskDto | never = CreateTaskDto.from(_req.body as Partial<Todo>);
-    const todo: Todo = await this._todoService.create(request);
-    const data: TaskDto = TaskDto.from(todo);
-    return _res.status(200).send({
-      status: 'success',
-      data,
-    });
+    const data: TaskDto = await this._todoService.create(_req.body as CreateTaskDto);
+    const response: BaseHttpResponse = BaseHttpResponse.success(data, 201);
+    return _res.status(response.statusCode).send(response);
   }
 }

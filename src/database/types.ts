@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { TodoStatus } from 'src/todo/types';
+import TodoStatus from 'src/todo/types';
 
 export class Todo {
   _id: string;
