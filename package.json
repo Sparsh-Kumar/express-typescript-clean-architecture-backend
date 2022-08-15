@@ -13,6 +13,11 @@
   },
   "author": "sparshkumar",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/chai": "^4.3.1",
