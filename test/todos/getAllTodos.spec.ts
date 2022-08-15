@@ -1,8 +1,7 @@
-import chai, { expect } from 'chai';
+import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
-import TodoService from '../../src/todo/todo.service';
 
 chai.use(chaiHttp);
 chai.use(chaiAsPromised);
