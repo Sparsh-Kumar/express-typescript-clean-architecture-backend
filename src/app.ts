@@ -9,6 +9,8 @@ import ValidationException from './exceptions/validation-exception-handler';
 import HttpException from './exceptions/http-exception-handler';
 import BaseHttpResponse from './helpers/base-http-response';
 import { ApplicationOptions } from './helpers/types';
+import EmployeeRepository from './employee/employee.repository';
+import EmployeeService from './employee/employee.service';
 
 export default class App extends Application {
   private _db: DbService;
@@ -17,6 +19,8 @@ export default class App extends Application {
     this._container.bind(DbService).toSelf();
     this._container.bind(TodoService).toSelf();
     this._container.bind(TodoRepository).toSelf();
+    this._container.bind(EmployeeService).toSelf();
+    this._container.bind(EmployeeRepository).toSelf();
   }
 
   async setup(options: ApplicationOptions): Promise<void> {
