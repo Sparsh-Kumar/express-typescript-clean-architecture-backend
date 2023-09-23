@@ -15,7 +15,7 @@ export default class EmployeeRepository {
   }
 
   async findOne(
-    filter: LooseObject
+    filter: LooseObject,
   ): Promise<Employee> {
     return this._dbContext.employee.findOne(filter);
   }
@@ -27,7 +27,7 @@ export default class EmployeeRepository {
       name: createEmployeeDto.name,
       email: createEmployeeDto.email,
       address: createEmployeeDto.address,
-      phone: createEmployeeDto.phone
+      phone: createEmployeeDto.phone,
     });
   }
 }

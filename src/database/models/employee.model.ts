@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 // TODO: To add validations in email & phone fields.
 
 const EmployeeModel: mongoose.Schema = new mongoose.Schema({
@@ -27,8 +26,7 @@ const EmployeeModel: mongoose.Schema = new mongoose.Schema({
     required: true,
     trim: true,
     maxLength: 10,
-  }
+  },
 }, { timestamps: true });
 
 export default EmployeeModel;
-

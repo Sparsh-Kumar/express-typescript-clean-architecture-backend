@@ -4,10 +4,15 @@ export default class EmployeeDto {
   public readonly id: string;
 
   public readonly name: string;
+
   public readonly email: string;
+
   public readonly address: string;
+
   public readonly phone: string;
+
   public readonly createdAt: Date;
+
   public readonly updatedAt: Date;
 
   constructor(
@@ -36,7 +41,7 @@ export default class EmployeeDto {
       employeeEntity.address,
       employeeEntity.phone,
       employeeEntity.createdAt,
-      employeeEntity.updatedAt
+      employeeEntity.updatedAt,
     );
   }
 }

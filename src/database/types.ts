@@ -27,7 +27,6 @@ export class Account {
   updatedAt: Date;
 }
 
-
 export class Employee {
   _id: string;
 
@@ -43,4 +42,3 @@ export class Employee {
 
   updatedAt: Date;
 }
-

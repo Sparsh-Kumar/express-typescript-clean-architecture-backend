@@ -11,7 +11,7 @@ export default class EmployeeService {
 
   async getAll(filter: LooseObject): Promise<EmployeeDto[]> {
     const employees: Employee[] = await this._employeeRepo.findAll(filter);
-    return employees.map((employee: Employee): EmployeeDto => EmployeeDto.from(employee))
+    return employees.map((employee: Employee): EmployeeDto => EmployeeDto.from(employee));
   }
 
   async create(createEmployeeDto: CreateEmployeeDto): Promise<EmployeeDto> {

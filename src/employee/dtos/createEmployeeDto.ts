@@ -3,8 +3,11 @@ import ValidationException from 'src/exceptions/validation-exception-handler';
 
 export default class CreateEmployeeDto {
   public readonly name: string;
+
   public readonly email: string;
+
   public readonly address: string;
+
   public readonly phone: string;
 
   constructor(
@@ -37,7 +40,7 @@ export default class CreateEmployeeDto {
       employeeBody.name,
       employeeBody.email,
       employeeBody.address,
-      employeeBody.phone
-    )
+      employeeBody.phone,
+    );
   }
 }
