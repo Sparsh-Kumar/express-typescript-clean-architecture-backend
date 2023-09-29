@@ -25,6 +25,16 @@ export default class EmployeeController {
     return _res.status(response.statusCode).send(response);
   }
 
+  @httpGet('/:id')
+  async getParticularEmployee(
+    _req: Request,
+    _res: Response,
+  ): Promise<LooseObject> {
+    const data: EmployeeDto = await this._employeeService.getOne(_req.params.id);
+    const response: BaseHttpResponse = BaseHttpResponse.success(data, 200);
+    return _res.status(response.statusCode).send(response);
+  }
+
   @httpPost('/', ValidateRequestMiddleware.with(CreateEmployeeDto))
   async createNewTask(
     _req: Request,

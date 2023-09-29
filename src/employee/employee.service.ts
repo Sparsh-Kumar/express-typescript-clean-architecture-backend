@@ -14,6 +14,13 @@ export default class EmployeeService {
     return employees.map((employee: Employee): EmployeeDto => EmployeeDto.from(employee));
   }
 
+  async getOne(_id: string): Promise<EmployeeDto | null> {
+    const employee: Employee = await this._employeeRepo.findOne({
+      _id,
+    });
+    return employee ? EmployeeDto.from(employee): null;
+  }
+
   async create(createEmployeeDto: CreateEmployeeDto): Promise<EmployeeDto> {
     const createdEmployee: Employee = await this._employeeRepo.create(createEmployeeDto);
     return EmployeeDto.from(createdEmployee);

@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import App from './app';
 
 import './todo/todo.controller';
+import './employee/employee.controller';
 import { ApplicationOptions, MorganLoggingTypes } from './helpers/types';
 
 export default function bootstrap(): void {
