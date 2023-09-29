@@ -18,7 +18,7 @@ export default class EmployeeService {
     const employee: Employee = await this._employeeRepo.findOne({
       _id,
     });
-    return employee ? EmployeeDto.from(employee): null;
+    return employee ? EmployeeDto.from(employee) : null;
   }
 
   async create(createEmployeeDto: CreateEmployeeDto): Promise<EmployeeDto> {
