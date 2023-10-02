@@ -1,4 +1,5 @@
 import morgan from 'morgan';
+import cors, { CorsOptions } from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import DbService from './database/db.service';
@@ -24,12 +25,14 @@ export default class App extends Application {
   }
 
   async setup(options: ApplicationOptions): Promise<void> {
+    const corsOptions: CorsOptions = {};
     this._db = this._container.get(DbService);
     await this._db.connect();
     const server: InversifyExpressServer = new InversifyExpressServer(this._container);
     server.setConfig((app) => {
       app.use(express.json());
       app.use(morgan(options.morganConfig.format));
+      app.use(cors(corsOptions));
     });
     server.setErrorConfig((app) => {
       app.use((
