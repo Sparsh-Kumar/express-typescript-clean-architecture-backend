@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import {
   controller,
+  httpDelete,
   httpGet,
   httpPost,
 } from 'inversify-express-utils';
@@ -32,6 +33,16 @@ export default class EmployeeController {
   ): Promise<LooseObject> {
     const data: EmployeeDto = await this._employeeService.getOne(_req.params.id);
     const response: BaseHttpResponse = BaseHttpResponse.success(data, 200);
+    return _res.status(response.statusCode).send(response);
+  }
+
+  @httpDelete('/:id')
+  async deleteParticularEmployee(
+    _req: Request,
+    _res: Response,
+  ): Promise<LooseObject> | never {
+    await this._employeeService.deleteOne(_req.params.id);
+    const response: BaseHttpResponse = BaseHttpResponse.success({}, 200);
     return _res.status(response.statusCode).send(response);
   }
 

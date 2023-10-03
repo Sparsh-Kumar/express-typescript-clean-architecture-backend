@@ -12,6 +12,7 @@ import BaseHttpResponse from './helpers/base-http-response';
 import { ApplicationOptions } from './helpers/types';
 import EmployeeRepository from './employee/employee.repository';
 import EmployeeService from './employee/employee.service';
+import NotFoundException from './exceptions/not-found-exception-handler';
 
 export default class App extends Application {
   private _db: DbService;
@@ -41,7 +42,7 @@ export default class App extends Application {
         _res: Response,
         _next: NextFunction,
       ) => {
-        if (_err instanceof ValidationException) {
+        if (_err instanceof ValidationException || _err instanceof NotFoundException) {
           const response: BaseHttpResponse = BaseHttpResponse.failure(
             _err.message,
             _err.statusCode,

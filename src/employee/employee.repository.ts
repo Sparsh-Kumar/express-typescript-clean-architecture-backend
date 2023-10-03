@@ -30,4 +30,14 @@ export default class EmployeeRepository {
       phone: createEmployeeDto.phone,
     });
   }
+
+  async deleteOne(
+    _id: string
+  ): Promise<void> {
+    await this._dbContext.employee.deleteOne(
+      {
+        _id
+      }
+    );
+  }
 }

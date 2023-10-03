@@ -4,6 +4,7 @@ import { LooseObject } from 'src/common/interfaces/loose-object';
 import CreateEmployeeDto from './dtos/createEmployeeDto';
 import EmployeeRepository from './employee.repository';
 import EmployeeDto from './dtos/employeeDto';
+import NotFoundException from 'src/exceptions/not-found-exception-handler';
 
 @injectable()
 export default class EmployeeService {
@@ -19,6 +20,13 @@ export default class EmployeeService {
       _id,
     });
     return employee ? EmployeeDto.from(employee) : null;
+  }
+
+  async deleteOne(_id: string): Promise<void> | never {
+    const employee: EmployeeDto = await this.getOne(_id);
+    if (!employee)
+      throw new NotFoundException(`Employee with Id = ${_id} does not exist.`);
+    await this._employeeRepo.deleteOne(_id);
   }
 
   async create(createEmployeeDto: CreateEmployeeDto): Promise<EmployeeDto> {
