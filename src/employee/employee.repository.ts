@@ -32,12 +32,12 @@ export default class EmployeeRepository {
   }
 
   async deleteOne(
-    _id: string
+    _id: string,
   ): Promise<void> {
     await this._dbContext.employee.deleteOne(
       {
-        _id
-      }
+        _id,
+      },
     );
   }
 }
