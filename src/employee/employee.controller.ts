@@ -65,7 +65,7 @@ export default class EmployeeController {
   ): Promise<LooseObject> {
     const data: EmployeeDto = await this._employeeService.update(
       _req.params.id,
-      _req.body as UpdateEmployeeDto
+      _req.body as UpdateEmployeeDto,
     );
     const response: BaseHttpResponse = BaseHttpResponse.success(data, 200);
     return _res.status(response.statusCode).send(response);
