@@ -3,6 +3,7 @@ import { Employee } from 'src/database/types';
 import { LooseObject } from 'src/common/interfaces/loose-object';
 import DbService from '../database/db.service';
 import CreateEmployeeDto from './dtos/createEmployeeDto';
+import UpdateEmployeeDto from './dtos/updateEmployeeDto';
 
 @injectable()
 export default class EmployeeRepository {
@@ -29,6 +30,27 @@ export default class EmployeeRepository {
       address: createEmployeeDto.address,
       phone: createEmployeeDto.phone,
     });
+  }
+
+  async update(
+    _id: string,
+    updateEmployeeDto: UpdateEmployeeDto,
+  ): Promise<Employee> {
+    const updateQuery: LooseObject = {};
+    if (updateEmployeeDto.name) updateQuery.name = updateEmployeeDto.name;
+    if (updateEmployeeDto.email) updateQuery.email = updateEmployeeDto.email;
+    if (updateEmployeeDto.address) updateQuery.address = updateEmployeeDto.address;
+    if (updateEmployeeDto.phone) updateQuery.phone = updateEmployeeDto.phone;
+    await this._dbContext.employee.update(
+      {
+        _id,
+      },
+      {
+        $set: updateQuery,
+      },
+      { new: true },
+    );
+    return this.findOne({ _id });
   }
 
   async deleteOne(
